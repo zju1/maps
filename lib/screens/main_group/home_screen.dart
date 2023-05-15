@@ -34,27 +34,36 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
-        Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            children: [
-              Scrollable(
+        Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(
+                bottom: 100,
+              ),
+              child: Scrollable(
                 viewportBuilder: (context, position) {
                   return TypeAheadField(
                     textFieldConfiguration: const TextFieldConfiguration(
                       decoration: InputDecoration(
                         fillColor: Colors.white,
                         filled: true,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(50),
-                          ),
+                        hintText: 'Search a place you want to go...',
+                        hintStyle: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
                         ),
+                        prefixIcon: Icon(Icons.search_outlined),
                       ),
                     ),
                     suggestionsCallback: (pattern) async {
                       return await BackendService.getSuggestions(pattern);
                     },
+                    suggestionsBoxVerticalOffset: 0,
+                    suggestionsBoxDecoration: SuggestionsBoxDecoration(
+                      constraints: BoxConstraints(
+                        maxHeight: (MediaQuery.of(context).size.height - 150),
+                      ),
+                    ),
                     itemBuilder: (context, itemData) {
                       return ListTile(
                         leading: const Icon(Icons.location_city),
@@ -79,8 +88,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   );
                 },
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ],
     );

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -15,35 +14,34 @@ class _AppBottomBarState extends State<AppBottomBar> {
 
   @override
   Widget build(BuildContext context) {
-    return NavigationRail(
+    return NavigationBar(
       onDestinationSelected: (value) {
         context.push(destinations[value]);
         setState(() {
           activeIndex = value;
         });
       },
-      labelType: NavigationRailLabelType.all,
       selectedIndex: activeIndex,
       destinations: const [
-        NavigationRailDestination(
-          icon: Icon(CupertinoIcons.add_circled),
-          selectedIcon: Icon(CupertinoIcons.add_circled_solid),
-          label: Text('Home'),
+        NavigationDestination(
+          icon: Icon(Icons.home_outlined),
+          selectedIcon: Icon(Icons.home_rounded),
+          label: 'Home',
         ),
-        NavigationRailDestination(
-          icon: Icon(CupertinoIcons.search_circle),
-          selectedIcon: Icon(CupertinoIcons.search_circle_fill),
-          label: Text('Explore'),
+        NavigationDestination(
+          icon: Icon(Icons.travel_explore_outlined),
+          selectedIcon: Icon(Icons.travel_explore_rounded),
+          label: 'Explore',
         ),
-        NavigationRailDestination(
-          icon: Icon(CupertinoIcons.book_circle),
-          selectedIcon: Icon(CupertinoIcons.book_circle_fill),
-          label: Text('Saved'),
+        NavigationDestination(
+          icon: Icon(Icons.bookmark_outline_outlined),
+          selectedIcon: Icon(Icons.bookmark_rounded),
+          label: 'Saved',
         ),
-        NavigationRailDestination(
-          icon: Icon(CupertinoIcons.person_circle),
-          selectedIcon: Icon(CupertinoIcons.person_circle_fill),
-          label: Text('Profile'),
+        NavigationDestination(
+          icon: Icon(Icons.account_circle_outlined),
+          selectedIcon: Icon(Icons.account_circle_rounded),
+          label: 'Profile',
         ),
       ],
     );
